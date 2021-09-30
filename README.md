@@ -1,4 +1,4 @@
-Aplicación que muestra votaciones por banda a través de un gráfico
+Aplicación que muestra votaciones por banda musical a través de un gráfico
 
 Está creada en base: 
 
