@@ -54,7 +54,23 @@ const App: FC = (): ReactElement => {
 			setBands(data)
 		});
 
-	}, [socket])
+	}, [socket]);
+
+	const increaseVotes = (id: string) => {
+        socket.emit('band-vote', { id });
+    };
+
+	const removeBand = (id: string) => {
+		socket.emit('band-remove', { id });
+	};
+
+	const changeNameBand = (id: string, name: string) => {
+		socket.emit('band-change-name', { id, name });
+	};
+
+	const addBand = (name: string) => {
+		socket.emit('band-add', { name });
+	};
 
   	return (
     	<div className="container">
@@ -75,13 +91,13 @@ const App: FC = (): ReactElement => {
 
 			<div className="row">
 				<div className="col-8">
-					<BandList data={bands}/>
+					<BandList data={bands} vote={ increaseVotes } remove={ removeBand } changeNameBand={ changeNameBand } />
 				</div>
 			</div>
 
 			<div className="row">
 				<div className="col-8">
-					<BandAdd />
+					<BandAdd addBand={ addBand } />
 				</div>
 			</div>
     	</div>
