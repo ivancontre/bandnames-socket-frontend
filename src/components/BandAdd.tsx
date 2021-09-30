@@ -1,23 +1,19 @@
-import React, { FC, ReactElement, useState }  from 'react';
+import React, { FC, ReactElement, useContext, useState }  from 'react';
+import { SocketContext } from '../context/SocketContext';
 
-type BandProps = {
-    addBand: Function;
-};
-
-
-const BandAdd: FC<BandProps> = ({ addBand }): ReactElement => {
+const BandAdd: FC = (): ReactElement => {
 
     const [name, setName] = useState<string>('');
 
+    const { socket } = useContext(SocketContext);
 
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         if (name.trim().length > 0) {
-            addBand(name);
+            socket?.emit('band-add', { name });
             setName('');
         }
-
 
     };
 
