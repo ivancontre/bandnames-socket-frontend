@@ -29,7 +29,7 @@ const BandChart: FC = () => {
 
         const ctx = (document.getElementById('myChart') as HTMLCanvasElement).getContext('2d');
 
-        if (myChart) myChart.destroy();
+        myChart && myChart.destroy();
 
         myChart = new Chart(ctx, {
             type: 'bar',
@@ -69,7 +69,7 @@ const BandChart: FC = () => {
         });
     }
     return (
-        <canvas id="myChart"></canvas>
+        <canvas id="myChart" height="50"></canvas>
     )
 };
 
